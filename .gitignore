@@ -1,0 +1,8 @@
+#过滤文件夹
+.wing/
+bin-debug/
+libs/
+polyfill/
+template/
+resource/
+bin-release/
