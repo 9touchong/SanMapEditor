@@ -9,10 +9,14 @@ class MapContainer extends eui.Scroller{
         this.stuffing();
         this.positing_self();
     }
-    private stuffing(){
+    public stuffing(jpg_name?:string){
         //装填内容
+        if (!jpg_name){
+            jpg_name = "bigsizetest_jpg";
+        }
         this.content = new eui.Group();
-        let big_img = new eui.Image(RES.getRes("bigsizetest_jpg"));
+        let big_img = new eui.Image(RES.getRes(jpg_name));
+        this.content.removeChildren();
         this.content.addChild(big_img);
         this.viewport = this.content;
     }
