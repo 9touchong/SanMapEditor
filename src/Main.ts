@@ -129,7 +129,9 @@ class Main extends eui.UILayer {
      * Create scene interface
      */
     protected startCreateScene(): void {
-        let sky_group = new eui.Group();
+        let main_group = new MainWindows();
+        this.addChild(main_group);
+        /**let sky_group = new eui.Group();
         let sky = new eui.Image(RES.getRes("bigsizetest_jpg"));
         //let sky = this.createBitmapByName("bigsizetest_jpg");
         sky_group.addChild(sky);
@@ -151,7 +153,7 @@ class Main extends eui.UILayer {
         button.horizontalCenter = 0;
         button.verticalCenter = 0;
         this.addChild(button);
-        button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
+        button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);*/
     }
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
@@ -167,7 +169,7 @@ class Main extends eui.UILayer {
      * 点击按钮
      * Click the button
      */
-    private onButtonClick(e: egret.TouchEvent) {
+    private ORIonButtonClick(e: egret.TouchEvent) {
         let panel = new eui.Panel();
         panel.title = "Title";
         panel.horizontalCenter = 0;
