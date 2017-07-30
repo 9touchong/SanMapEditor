@@ -14,11 +14,9 @@ class MainWindows extends eui.Group{
         this.MapContainer = new MapContainer();
         this.addChild(this.MapContainer);
 
-        let button = new eui.Button();
-        button.label = "Click!";
-        this.addChild(button);
-        button.x = 10;button.y = 10;
-        button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
+        let save_button = new NormalButton("save");
+        this.addChild(save_button);
+        //save_button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
     }
     private onButtonClick(e: egret.TouchEvent) {
         this.MapContainer.stuffing("bg_jpg");

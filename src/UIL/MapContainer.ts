@@ -24,7 +24,7 @@ class MapContainer extends eui.Scroller{
         //给自己定位
         this.width = 600;
         this.height = 600;
-        this.x = 100;
-        this.y = 100;
+        this.x = 200;
+        this.y = 200;
     }
 }
