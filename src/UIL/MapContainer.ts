@@ -8,6 +8,7 @@ class MapContainer extends eui.Scroller{
         super();
         this.stuffing();
         this.positing_self();
+        this.addEventListener(egret.TouchEvent.TOUCH_TAP,this.ontap,this);
     }
     public stuffing(jpg_name?:string){
         //装填内容
@@ -27,4 +28,7 @@ class MapContainer extends eui.Scroller{
         this.x = 200;
         this.y = 200;
     }
+    private ontap(e: egret.TouchEvent){
+        console.log("MapContainer 检测到点击了",e.localX);
+    };
 }
