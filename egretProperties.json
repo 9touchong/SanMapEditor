@@ -22,6 +22,10 @@
       "name": "tween"
     },
     {
+      "name": "mouse",
+      "path": "../libsrc"
+    },
+    {
       "name": "egret3d"
     }
   ]

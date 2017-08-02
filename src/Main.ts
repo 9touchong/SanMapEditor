@@ -129,31 +129,9 @@ class Main extends eui.UILayer {
      * Create scene interface
      */
     protected startCreateScene(): void {
+        mouse.enable(this.stage);
         let main_group = new MainWindows();
         this.addChild(main_group);
-        /**let sky_group = new eui.Group();
-        let sky = new eui.Image(RES.getRes("bigsizetest_jpg"));
-        //let sky = this.createBitmapByName("bigsizetest_jpg");
-        sky_group.addChild(sky);
-        //this.addChild(sky);
-        //创建一个Scroller
-        var myScroller = new eui.Scroller();
-        //注意位置和尺寸的设置是在Scroller上面，而不是容器上面
-        myScroller.width = 200;
-        myScroller.height = 200;
-        //设置viewport
-        myScroller.viewport = sky_group;
-        this.addChild(myScroller);
-        //需要在scroller添加到舞台上面之后再访问verticalScrollBar
-        myScroller.verticalScrollBar.autoVisibility = false;
-        myScroller.verticalScrollBar.visible = true;
-
-        let button = new eui.Button();
-        button.label = "Click!";
-        button.horizontalCenter = 0;
-        button.verticalCenter = 0;
-        this.addChild(button);
-        button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);*/
     }
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
