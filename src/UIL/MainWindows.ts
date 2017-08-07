@@ -3,8 +3,10 @@
  */
 class MainWindows extends eui.Group{
     private MapContainer:MapContainer;
+    private LOGIC:LogicMaker;   //逻辑控制程序
     constructor() {
         super();
+        this.LOGIC = new LogicMaker();
     }
     protected createChildren(): void {
         super.createChildren();
@@ -16,5 +18,8 @@ class MainWindows extends eui.Group{
 
         let save_button = new NormalButton("save");
         this.addChild(save_button);
+    }
+    public tell_logic(sth:string){
+        this.LOGIC.hear_show(sth);
     }
 }

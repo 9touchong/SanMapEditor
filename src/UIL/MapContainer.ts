@@ -18,8 +18,8 @@ class MapContainer extends eui.Scroller{
          * 如果以后有机会优化细化的话，这里的功能应该是可以随输入随时更改的，后话
          * 除了底图大小也即视窗大小是确定的，其他的先确定格子数量（确定一个方向的即可，因为目前格子是正的，即固定宽高比）再确定格子大小或反之都是可以得，
          */
-        this.SIZE = {"mapjpg_width":2000*4,"mapjpg_height":2000*4};
-        this.SIZE["E-W_grids"] = 200;
+        this.SIZE = {"mapjpg_width":2000,"mapjpg_height":2000};
+        this.SIZE["E-W_grids"] = 50;
         this.SIZE["grid_r"] = this.SIZE["mapjpg_width"]/((this.SIZE["E-W_grids"]-1)*1.5);
         this.SIZE["S-N_grids"] = Math.floor(this.SIZE["mapjpg_height"]/(Math.sqrt(3)*this.SIZE["grid_r"]))+1;
         console.log("E-W_grids",this.SIZE["E-W_grids"],"S-N_grids",this.SIZE["S-N_grids"],"grid_r",this.SIZE["grid_r"]);
