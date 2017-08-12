@@ -19,8 +19,10 @@ function Read_terrain_map(){
      * 不接受参数 读固定文件
      * 读取成功 处理得到terrain_map 一个数字为元素的二维数组
      */
-    console.log("it is in Read_terrain_map");
     let txt:string = RES.getRes("terrain_lmap");
+    if (!txt){
+        return 0;
+    };
     let [size,content] = txt.split("\r\n");
     let [s_width,s_height] = size.split(",");let width = parseInt(s_width);let height = parseInt(s_height)
     let result = new Array();

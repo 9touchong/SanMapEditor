@@ -7,14 +7,14 @@ class MainWindows extends eui.Group{
     private LOGIC:LogicMaker;   //逻辑控制程序
     constructor() {
         super();
-        this.LOGIC = new LogicMaker();
+        this.LOGIC = new LogicMaker();  //逻辑先行
     }
     protected createChildren(): void {
         super.createChildren();
         this.width = parent.innerWidth;
         this.height = parent.innerHeight;
 
-        this.MapContainer = new MapContainer();
+        this.MapContainer = new MapContainer(this.LOGIC.terrain_map);
         this.addChild(this.MapContainer);
 
         let save_button = new NormalButton("save");
@@ -22,7 +22,7 @@ class MainWindows extends eui.Group{
     }
     public tell(sth:string){
         /**
-         * 向下级或逻辑层传送消息
+         * 向逻辑层传送消息
          */
         switch (sth){
             case "save_terrain":
@@ -32,9 +32,9 @@ class MainWindows extends eui.Group{
                 return 0;
         };
     }
-    public hear(sth:string){
+    public hear(sth:string,value:any){
         /**
-         * 听取下级或逻辑层的消息
+         * 听取逻辑层的消息
          */
     }
 }

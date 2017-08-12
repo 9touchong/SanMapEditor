@@ -28,5 +28,6 @@ class HexagonGrid extends egret.Bitmap{
     private onTap(e:egret.TouchEvent){
         this.terrain = (this.terrain + 1) % TerrainSymbols.length;
         this.texture = RES.getRes(TerrainSymbols[this.terrain]["res_name"]);
+        now_terrain_map[this.m_x][this.m_y] = this.terrain;
     }
 }
