@@ -23,7 +23,7 @@
     },
     {
       "name": "mouse",
-      "path": "../libsrc"
+      "path": "../third_party_module_libsrc/Mouse"
     },
     {
       "name": "egret3d"

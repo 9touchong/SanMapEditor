@@ -3,7 +3,7 @@
  * 一个可滚动的容器
  */
 class MapContainer extends eui.Scroller{
-    private SIZE:Object;    //规格
+    private SIZE:Object = Default_Sizes;    //规格,与逻辑层的同名属性来自相同引用
     private content:eui.Group;
     constructor() {
         super();
@@ -19,10 +19,10 @@ class MapContainer extends eui.Scroller{
          * 除了底图大小也即视窗大小是确定的，其他的先确定格子数量（确定一个方向的即可，因为目前格子是正的，即固定宽高比）再确定格子大小或反之都是可以得，
          */
         this.SIZE = {"mapjpg_width":2000,"mapjpg_height":2000};
-        this.SIZE["E-W_grids"] = 50;
-        this.SIZE["grid_r"] = this.SIZE["mapjpg_width"]/((this.SIZE["E-W_grids"]-1)*1.5);
-        this.SIZE["S-N_grids"] = Math.floor(this.SIZE["mapjpg_height"]/(Math.sqrt(3)*this.SIZE["grid_r"]))+1;
-        console.log("E-W_grids",this.SIZE["E-W_grids"],"S-N_grids",this.SIZE["S-N_grids"],"grid_r",this.SIZE["grid_r"]);
+        this.SIZE["EW_grids"] = 50;
+        this.SIZE["grid_r"] = this.SIZE["mapjpg_width"]/((this.SIZE["EW_grids"]-1)*1.5);
+        this.SIZE["SN_grids"] = Math.floor(this.SIZE["mapjpg_height"]/(Math.sqrt(3)*this.SIZE["grid_r"]))+1;
+        console.log("EW_grids",this.SIZE["EW_grids"],"SN_grids",this.SIZE["SN_grids"],"grid_r",this.SIZE["grid_r"]);
     }
     public stuffing(jpg_name?:string){
         //装填内容
@@ -48,14 +48,14 @@ class MapContainer extends eui.Scroller{
         var t_x:number;
         var t_y:number;
         var start_y = 0;
-        for (var i = 0; i<this.SIZE["E-W_grids"]; i+=1){
+        for (var i = 0; i<this.SIZE["EW_grids"]; i+=1){
             t_x = i*this.SIZE["grid_r"]*1.5;
             if (i%2 == 0){  //逻辑横坐标为偶数
                 start_y = 0;
             }else{  //逻辑横坐标为奇数
                 start_y = Math.sqrt(3)/2 * this.SIZE["grid_r"];
             };
-            for (var j = 0; j<this.SIZE["S-N_grids"]; j+=1){
+            for (var j = 0; j<this.SIZE["SN_grids"]; j+=1){
                 t_y = start_y + Math.sqrt(3) * this.SIZE["grid_r"] * j;
                 let a_grid = new HexagonGrid(i,j,t_x,t_y,this.SIZE["grid_r"]);
                 this.content.addChild(a_grid);

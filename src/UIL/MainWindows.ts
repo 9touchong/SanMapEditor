@@ -1,5 +1,6 @@
 /**
  * 主界面
+ * 可以看作UI层的主程序
  */
 class MainWindows extends eui.Group{
     private MapContainer:MapContainer;
@@ -19,7 +20,21 @@ class MainWindows extends eui.Group{
         let save_button = new NormalButton("save");
         this.addChild(save_button);
     }
-    public tell_logic(sth:string){
-        this.LOGIC.hear_show(sth);
+    public tell(sth:string){
+        /**
+         * 向下级或逻辑层传送消息
+         */
+        switch (sth){
+            case "save_terrain":
+                this.LOGIC.hear(sth);
+                break;
+            default:
+                return 0;
+        };
+    }
+    public hear(sth:string){
+        /**
+         * 听取下级或逻辑层的消息
+         */
     }
 }

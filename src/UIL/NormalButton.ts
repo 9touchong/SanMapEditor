@@ -40,7 +40,7 @@ class NormalButton extends eui.Button{
             case "save":
                 this.call_back = function(){
                     console.log("save按钮被点击了");
-                    this.parent.tell_logic("save_terrain");
+                    this.parent.tell("save_terrain");
                 };
                 break;
             default:
