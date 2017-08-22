@@ -5,7 +5,7 @@
  */
 var TerrainSymbols:Array<Object> = [
     {"label":"不可进入","color":0x999999,"res_name":"hexagon_red_png"},   //0,不可进入地形
-    {"label":"一般地形","color":0x101010,"res_name":"hexagon_white_png"},   //1,普通的平地
+    {"label":"一般地形","color":0x101010,"res_name":"hexagon_white_png"},   //1,普通的平地/草地
     {"label":"主径","color":0xD6AC08,"res_name":"hexagon_yellow_png"},   //2，主径
     {"label":"水","color":0x00DDDD,"res_name":"hexagon_blue_png"},   //3,水
     {"label":"森林","color":0x369636,"res_name":"hexagon_green_png"},   //4，森林
