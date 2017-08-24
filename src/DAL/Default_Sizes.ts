@@ -11,7 +11,7 @@ class SizeKeeper{
     public SN_grids: number;
     public grid_r: number;  //格子的半径
     constructor(){
-        this.mapjpg_width = 4000;
+        this.mapjpg_width = 3000;
         this.mapjpg_height = 3000;
         this.set_SIZE("EW_grids",100);
         console.log("sizekeeper 报告 mapjpg_width",this.mapjpg_width,"mapjpg_height",this.mapjpg_height,"EW_grids",this.EW_grids,"SN_grids",this.SN_grids,"grid_r",this.grid_r);

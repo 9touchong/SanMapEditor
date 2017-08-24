@@ -12,8 +12,8 @@ class NormalButton extends eui.Button{
         if (!x || !y){
             switch (this.flag){
                 case "save":
-                    x = 100;
-                    y = 100;
+                    x = 10;
+                    y = 10;
                     break;
                 default:
                     x = 107;

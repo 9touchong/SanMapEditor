@@ -4,13 +4,34 @@
  * 其中要调用js脚本的方法
  * [注]那些js脚本在polyfill目录下
  */
-declare function do_save_terrain_map(in_map:Array<Array<number>>);
+declare function do_save_terrain_map(in_map:Array<Array<number>>,additional:string);
 function Write_terrain_map(in_map:Array<Array<number>>){
     /**
      * 写入地形级地图文件
      * in_map 就是将要写入的数据 即terrain_map 一个数字为元素的二维数组
+     * 这里还要生成附加信息
      */
-    do_save_terrain_map(in_map);
+    let city_arr = new Array();
+    let guan_arr = new Array();
+    let citadel_arr = new Array();
+    for (let i = 0 ; i < in_map.length ; i++){
+        for (let j = 0 ; j < in_map[0].length ; j++){
+            let t = in_map[i][j];
+            if (t == 5){
+                city_arr.push(i+","+j);
+            }else if (t == 7){
+                guan_arr.push(i+","+j);
+            }else if (t == 8){
+                citadel_arr.push(i+","+j);
+            }
+        }
+    };
+    let additional:string = "";
+    console.log(city_arr);
+    additional += city_arr.join(" ") + "\r\n";
+    additional += guan_arr.join(" ") + "\r\n";
+    additional += citadel_arr.join(" ");
+    do_save_terrain_map(in_map,additional);
     console.log("it is Write_terrain_map function");
 }
 function Read_terrain_map(){

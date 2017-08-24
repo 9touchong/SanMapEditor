@@ -26,10 +26,10 @@ class MapContainer extends eui.Scroller{
     }
     private positing_self(){
         //给自己定位
-        this.width = 600;
+        this.width = 1000;
         this.height = 600;
-        this.x = 200;
-        this.y = 200;
+        this.x = 100;
+        this.y = 100;
     }
     private Overspread(){   //用初始化的格子铺满全图
         var t_x:number;
