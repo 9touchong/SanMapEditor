@@ -19,6 +19,8 @@ class MainWindows extends eui.Group{
 
         let save_button = new NormalButton("save");
         this.addChild(save_button);
+        let showhide_btn = new NormalButton("showORhide");
+        this.addChild(showhide_btn);
     }
     public tell(sth:string){
         /**
@@ -34,7 +36,17 @@ class MainWindows extends eui.Group{
     }
     public hear(sth:string,value:any){
         /**
-         * 听取逻辑层的消息
+         * 听取逻辑层或下级的消息
          */
+        switch (sth){
+            case "save_terrain":
+                this.tell(sth);
+                break;
+            case "showORhide":
+                this.MapContainer.showORhide();
+                break;
+            default:
+                return 0;
+        };
     }
 }

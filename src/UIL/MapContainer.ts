@@ -5,6 +5,7 @@
 class MapContainer extends eui.Scroller{
     private SIZE:Object = Default_Sizes;    //规格,与逻辑层的同名属性来自相同引用
     private content:eui.Group;
+    private grids_layer = new egret.DisplayObjectContainer; //所有格子的集合
     constructor(terrain_map) {
         super();
         this.stuffing();
@@ -26,12 +27,13 @@ class MapContainer extends eui.Scroller{
     }
     private positing_self(){
         //给自己定位
-        this.width = 1000;
-        this.height = 600;
-        this.x = 100;
-        this.y = 100;
+        this.width = 1800;
+        this.height = 900;
+        this.x = 120;
+        this.y = 10;
     }
     private Overspread(){   //用初始化的格子铺满全图
+        this.content.addChild(this.grids_layer);
         var t_x:number;
         var t_y:number;
         var start_y = 0;
@@ -45,8 +47,12 @@ class MapContainer extends eui.Scroller{
             for (var j = 0; j<this.SIZE["SN_grids"]; j+=1){
                 t_y = start_y + Math.sqrt(3) * this.SIZE["grid_r"] * j;
                 let a_grid = new HexagonGrid(i,j,t_x,t_y,this.SIZE["grid_r"],now_terrain_map[i][j]);
-                this.content.addChild(a_grid);
+                this.grids_layer.addChild(a_grid);
             };
         };
+    }
+    public showORhide(){
+        //显隐切换
+        this.grids_layer.visible = (this.grids_layer.visible)?false:true;
     }
 }

@@ -15,6 +15,10 @@ class NormalButton extends eui.Button{
                     x = 10;
                     y = 10;
                     break;
+                case "showORhide":
+                    x = 10;
+                    y = 100;
+                    break;
                 default:
                     x = 107;
                     y = 107;
@@ -29,6 +33,9 @@ class NormalButton extends eui.Button{
                 case "save":
                     label = "写入";
                     break;
+                case "showORhide":
+                    label = "显隐";
+                    break;
                 default:
                     label = "按钮";
             }
@@ -40,7 +47,13 @@ class NormalButton extends eui.Button{
             case "save":
                 this.call_back = function(){
                     console.log("save按钮被点击了");
-                    this.parent.tell("save_terrain");
+                    this.parent.hear("save_terrain");
+                };
+                break;
+            case "showORhide":
+                this.call_back = function(){
+                    console.log("showhide按钮被点击了");
+                    this.parent.hear("showORhide");
                 };
                 break;
             default:

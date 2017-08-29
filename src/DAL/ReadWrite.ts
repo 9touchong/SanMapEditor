@@ -27,7 +27,6 @@ function Write_terrain_map(in_map:Array<Array<number>>){
         }
     };
     let additional:string = "";
-    console.log(city_arr);
     additional += city_arr.join(" ") + "\r\n";
     additional += guan_arr.join(" ") + "\r\n";
     additional += citadel_arr.join(" ");
@@ -50,8 +49,11 @@ function Read_terrain_map(){
     for (let i = 0; i < width; i++){
         result[i] = new Array();
         let t_arr:any = content.substr(i*height,height).split("");
-        for (let item in t_arr){t_arr[item] = parseInt(t_arr[item])};
-        result[i] = t_arr;
+        for (let s of t_arr){
+            result[i].push(signalTOnum[s]);
+            //t_arr[item] = parseInt(t_arr[item]);
+        };
+        //result[i] = t_arr;
     }
     return result;
 }

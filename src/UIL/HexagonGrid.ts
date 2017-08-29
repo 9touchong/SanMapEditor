@@ -1,5 +1,6 @@
 /**
  * 六边形网格,用位图表示
+ * 这里有一个相当于全局变量的last_HexagonGrid，代表最近被点击的格子对象。为了在希望下一个格子与上一个相同类别时不用点击多次，类似于格式刷的弱化。这么处理也只是方便才作此选择，比较粗糙，而且这种工作放到逻辑层似乎更合理，只是处理起来麻烦，就这样了。
  */
 var last_HexagonGrid:HexagonGrid;
 class HexagonGrid extends egret.Bitmap{
@@ -8,7 +9,8 @@ class HexagonGrid extends egret.Bitmap{
     private px_x:number;
     private px_y:number;
     private px_r:number;
-    public terrain:number; //表示地形类别的数字
+    public terrain:any; //表示地形类别的数字
+    private de_alph:number = 0.4; //默认的alpha值
     constructor(m_x:number,m_y:number,x:number,y:number,radius:number = 50,terrain:number = 1){
         super();
         this.px_x = x;this.px_y = y;this.px_r = radius;
@@ -24,7 +26,12 @@ class HexagonGrid extends egret.Bitmap{
         let WH_bi = this.width/this.height; this.width = 2*radius; this.height = this.width/WH_bi;
         this.anchorOffsetX = this.width/2; this.anchorOffsetY = this.width/2;  
         this.x = x; this.y = y;
-        this.alpha = 0.5;
+        this.alpha = this.de_alph;
+    }
+    public showORhide(){
+        //切换显隐
+        console.log("grid show hide");
+        //this.alpha = (!this.alpha)?this.de_alph:0;
     }
     private onTap(e:egret.TouchEvent){
         if (this == last_HexagonGrid || !last_HexagonGrid){
