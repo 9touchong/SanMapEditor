@@ -23,6 +23,8 @@ class MapContainer extends eui.Scroller{
         big_img.width = this.SIZE["mapjpg_width"];big_img.height = this.SIZE["mapjpg_height"];
         this.content.removeChildren();
         this.content.addChild(big_img);
+        let arrow = new Arrow();
+        this.content.addChild(arrow);
         this.viewport = this.content;
     }
     private positing_self(){
