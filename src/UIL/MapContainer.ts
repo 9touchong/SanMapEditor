@@ -5,12 +5,13 @@
 class MapContainer extends eui.Scroller{
     private SIZE:Object = Default_Sizes;    //规格,与逻辑层的同名属性来自相同引用
     private content:eui.Group;
-    private grids_layer = new egret.DisplayObjectContainer; //所有格子的集合
+    private grids_layer = new egret.DisplayObjectContainer; //所有格子所在的容器
+    private grids_index :Array<Array<any>>; //格子索引列表
     constructor(terrain_map) {
         super();
         this.stuffing();
         this.positing_self();
-        this.Overspread();
+        //this.Overspread();
     }
     public stuffing(jpg_name?:string){
         //装填内容
@@ -23,7 +24,8 @@ class MapContainer extends eui.Scroller{
         big_img.width = this.SIZE["mapjpg_width"];big_img.height = this.SIZE["mapjpg_height"];
         this.content.removeChildren();
         this.content.addChild(big_img);
-        let arrow = new Arrow();
+        this.Overspread();
+        let arrow = new Arrow(this.grids_index);
         this.content.addChild(arrow);
         this.viewport = this.content;
     }
@@ -39,7 +41,9 @@ class MapContainer extends eui.Scroller{
         var t_x:number;
         var t_y:number;
         var start_y = 0;
+        this.grids_index = new Array();
         for (var i = 0; i<this.SIZE["EW_grids"]; i+=1){
+            this.grids_index[i] = new Array();
             t_x = i*this.SIZE["grid_r"]*1.5;
             if (i%2 == 0){  //逻辑横坐标为偶数
                 start_y = 0;
@@ -50,6 +54,7 @@ class MapContainer extends eui.Scroller{
                 t_y = start_y + Math.sqrt(3) * this.SIZE["grid_r"] * j;
                 let a_grid = new HexagonGrid(i,j,t_x,t_y,this.SIZE["grid_r"],now_terrain_map[i][j]);
                 this.grids_layer.addChild(a_grid);
+                this.grids_index[i][j] = a_grid;
             };
         };
     }

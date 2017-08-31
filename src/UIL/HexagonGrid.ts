@@ -34,6 +34,9 @@ class HexagonGrid extends egret.Bitmap{
         //this.alpha = (!this.alpha)?this.de_alph:0;
     }
     private onTap(e:egret.TouchEvent){
+        this.change();
+    }
+    public change(){
         if (this == last_HexagonGrid || !last_HexagonGrid){
             this.terrain = (this.terrain + 1) % TerrainSymbols.length;
             
