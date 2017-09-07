@@ -14,6 +14,7 @@ function Write_terrain_map(in_map:Array<Array<number>>){
     let city_arr = new Array();
     let guan_arr = new Array();
     let citadel_arr = new Array();
+    let harbor_arr = new Array();
     for (let i = 0 ; i < in_map.length ; i++){
         for (let j = 0 ; j < in_map[0].length ; j++){
             let t = in_map[i][j];
@@ -29,7 +30,8 @@ function Write_terrain_map(in_map:Array<Array<number>>){
     let additional:string = "";
     additional += city_arr.join(" ") + "\r\n";
     additional += guan_arr.join(" ") + "\r\n";
-    additional += citadel_arr.join(" ");
+    additional += citadel_arr.join(" ") + "\r\n";
+    additional += harbor_arr.join(" ");
     do_save_terrain_map(in_map,additional);
     console.log("it is Write_terrain_map function");
 }
@@ -50,7 +52,7 @@ function Read_terrain_map(){
         result[i] = new Array();
         let t_arr:any = content.substr(i*height,height).split("");
         for (let s of t_arr){
-            result[i].push(signalTOnum[s]);
+            result[i].push(signalTOnum_T[s]);
             //t_arr[item] = parseInt(t_arr[item]);
         };
         //result[i] = t_arr;

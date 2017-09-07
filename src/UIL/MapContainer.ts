@@ -7,8 +7,10 @@ class MapContainer extends eui.Scroller{
     private content:eui.Group;
     private grids_layer = new egret.DisplayObjectContainer; //所有格子所在的容器
     private grids_index :Array<Array<any>>; //格子索引列表
-    constructor(terrain_map) {
+    private father;
+    constructor(father,terrain_map) {
         super();
+        this.father = father;
         this.stuffing();
         this.positing_self();
         //this.Overspread();
@@ -32,9 +34,9 @@ class MapContainer extends eui.Scroller{
     private positing_self(){
         //给自己定位
         this.width = 1800;
-        this.height = 900;
+        this.height = 840;
         this.x = 120;
-        this.y = 10;
+        this.y = 60;
     }
     private Overspread(){   //用初始化的格子铺满全图
         this.content.addChild(this.grids_layer);
@@ -52,14 +54,18 @@ class MapContainer extends eui.Scroller{
             };
             for (var j = 0; j<this.SIZE["SN_grids"]; j+=1){
                 t_y = start_y + Math.sqrt(3) * this.SIZE["grid_r"] * j;
-                let a_grid = new HexagonGrid(i,j,t_x,t_y,this.SIZE["grid_r"],now_terrain_map[i][j]);
+                let a_grid = new HexagonGrid(i,j,t_x,t_y,this.SIZE["grid_r"],now_terrain_map[i][j],this.father.coords_bar);
                 this.grids_layer.addChild(a_grid);
                 this.grids_index[i][j] = a_grid;
             };
         };
     }
-    public showORhide(){
+    public showORhide(type:string){
         //显隐切换
-        this.grids_layer.visible = (this.grids_layer.visible)?false:true;
+        if (type == "T"){   //地形显隐
+            this.grids_layer.visible = (this.grids_layer.visible)?false:true;
+        }else{  //"B"建筑现隐
+            return 0;
+        }
     }
 }

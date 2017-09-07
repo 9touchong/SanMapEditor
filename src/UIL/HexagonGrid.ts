@@ -9,9 +9,10 @@ class HexagonGrid extends egret.Bitmap{
     private px_x:number;
     private px_y:number;
     private px_r:number;
-    public terrain:any; //表示地形类别的数字
+    public terrain:number; //表示地形类别的数字，数字是TerrainSymbols中的序号
     private de_alph:number = 0.4; //默认的alpha值
-    constructor(m_x:number,m_y:number,x:number,y:number,radius:number = 50,terrain:number = 1){
+    private coords_bar:CoordsBar; //坐标显示栏
+    constructor(m_x:number,m_y:number,x:number,y:number,radius:number = 50,terrain:number = 1,coords_bar){
         super();
         this.px_x = x;this.px_y = y;this.px_r = radius;
         this.m_x = m_x;
@@ -20,6 +21,7 @@ class HexagonGrid extends egret.Bitmap{
         this.draw();
         this.touchEnabled = true;
         this.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onTap,this);
+        this.coords_bar = coords_bar;
     }
     private draw(x:number = this.px_x,y:number = this.px_y,radius:number = this.px_r,texture:string = TerrainSymbols[this.terrain]["res_name"]){
         this.texture = RES.getRes(texture);
@@ -29,12 +31,18 @@ class HexagonGrid extends egret.Bitmap{
         this.alpha = this.de_alph;
     }
     public showORhide(){
-        //切换显隐
+        //单体切换显隐
         console.log("grid show hide");
         //this.alpha = (!this.alpha)?this.de_alph:0;
     }
     private onTap(e:egret.TouchEvent){
-        this.change();
+        if (Mode == "edit"){
+            this.change();
+            this.coords_bar.set_text(this.m_x,this.m_y,TerrainSymbols[this.terrain]["label"]);
+        }else{
+            this.coords_bar.set_text(this.m_x,this.m_y,TerrainSymbols[this.terrain]["label"]);
+        }
+        
     }
     public change(){
         if (this == last_HexagonGrid || !last_HexagonGrid){
