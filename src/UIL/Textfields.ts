@@ -45,3 +45,27 @@ class CoordsBar extends eui.Label{
         this.text = t_x + "," + t_y + " " + t_label;
     }
 }
+class BuildingBar extends eui.Label{
+    /**
+     * 建筑信息栏
+     */
+     constructor(){
+        super();
+        this.x = 1;
+        this.y = 320;
+        this.width = 100;
+        this.height = 400;
+        this.textAlign = "center";
+        this.verticalAlign = "middle";
+        this.textColor = 0x0088F0;
+        this.bold = true;
+        this.set_text();
+    }
+    public set_text(building?){
+        if (building){
+            this.text = building["name"];
+        }else{
+            this.text = "无";
+        }
+    }
+}

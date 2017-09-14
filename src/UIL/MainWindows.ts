@@ -8,6 +8,7 @@ class MainWindows extends eui.Group{
     private LOGIC:LogicMaker;   //逻辑控制程序
     private status_bar:StatusBar;   //状态显示栏
     public coords_bar:CoordsBar; //坐标显示栏
+    public building_bar:BuildingBar;    //建筑信息栏
     constructor() {
         super();
         this.LOGIC = new LogicMaker();  //逻辑先行
@@ -32,8 +33,10 @@ class MainWindows extends eui.Group{
         this.addChild(this.status_bar); 
         this.coords_bar = new CoordsBar();
         this.addChild(this.coords_bar);
+        this.building_bar = new BuildingBar();
+        this.addChild(this.building_bar);
 
-        this.MapContainer = new MapContainer(this,this.LOGIC.terrain_map);
+        this.MapContainer = new MapContainer(this);
         this.addChild(this.MapContainer);
     }
     public tell(sth:string){

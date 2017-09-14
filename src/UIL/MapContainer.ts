@@ -7,13 +7,13 @@ class MapContainer extends eui.Scroller{
     private content:eui.Group;
     private grids_layer = new egret.DisplayObjectContainer; //所有格子所在的容器
     private grids_index :Array<Array<any>>; //格子索引列表
+    private building_show:boolean = true;  //当前建筑是否显示
     private father;
-    constructor(father,terrain_map) {
+    constructor(father) {
         super();
         this.father = father;
         this.stuffing();
         this.positing_self();
-        //this.Overspread();
     }
     public stuffing(jpg_name?:string){
         //装填内容
@@ -54,18 +54,31 @@ class MapContainer extends eui.Scroller{
             };
             for (var j = 0; j<this.SIZE["SN_grids"]; j+=1){
                 t_y = start_y + Math.sqrt(3) * this.SIZE["grid_r"] * j;
-                let a_grid = new HexagonGrid(i,j,t_x,t_y,this.SIZE["grid_r"],now_terrain_map[i][j],this.father.coords_bar);
+                let a_grid = new HexagonGrid(i,j,t_x,t_y,this.SIZE["grid_r"],now_terrain_map[i][j],this.father.coords_bar,this.father.building_bar);
                 this.grids_layer.addChild(a_grid);
                 this.grids_index[i][j] = a_grid;
             };
         };
+        //处理建筑格子
+        for (let t_building of now_building){
+            this.grids_index[t_building["Lpos"]["x"]][t_building["Lpos"]["y"]].set_building(t_building);
+        }
     }
     public showORhide(type:string){
         //显隐切换
         if (type == "T"){   //地形显隐
             this.grids_layer.visible = (this.grids_layer.visible)?false:true;
         }else{  //"B"建筑现隐
-            return 0;
+            this.building_show = (this.building_show)?false:true;
+            if (this.building_show){
+                for (let t_building of now_building){
+                    this.grids_index[t_building["Lpos"]["x"]][t_building["Lpos"]["y"]].set_building();
+                };
+            }else{
+                for (let t_building of now_building){
+                    this.grids_index[t_building["Lpos"]["x"]][t_building["Lpos"]["y"]].hide_building();
+                };
+            }
         }
     }
 }

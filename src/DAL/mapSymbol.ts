@@ -17,12 +17,13 @@ var TerrainSymbols:Array<Object> = [
 ];
 var BuildingSymbols:Array<Object> = [
     {"signal":"5","label":"城池","res_name":"hexagon_red_png"},   //5,城池地基中心， 城池可程度内损坏
-    {"signal":"6","label":"城池","res_name":"hexagon_pink_png"},   //6,城池占地，中心周围的一圈
+    {"signal":"6","label":"城池","res_name":"hexagon_pink_png"},   //6,城池占地，中心周围的一圈，但现在暂时不用它，城池只用
     {"signal":"7","label":"关隘","res_name":"hexagon_purple_png"},   //7,关隘地基中心，但一般其相邻或南北或东西要有一对不可进入的地形 关隘可摧毁不会消失
-    {"signal":"8","label":"城塞","res_name":"hexagon_yellow_png"},   //8,城塞 用地  城塞一般处在主径或平地上 交通要道上 可被彻底摧毁消失
+    {"signal":"8","label":"城镇","res_name":"hexagon_yellow_png"},   //8,城镇
     {"signal":"b","label":"港口","res_name":"hexagon_huilv_png"} //11,港口
 ];
 //var signalTOnum = {"0":0,"1":1,"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8,"9":9,"a":10,"b":11};
 var signalTOnum_T:Object = {"0":0,"1":1,"2":2,"3":3,"4":4,"9":5,"a":6};
 var signalTOnum_S = {"5":0,"6":1,"7":2,"8":3,"b":4};
 var now_terrain_map = new Array();
+var now_building = new Array();

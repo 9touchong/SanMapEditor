@@ -2,10 +2,10 @@
  * 用于辅助指示的动画箭头
  */
 class Arrow extends egret.MovieClip{
-    private m_x:number = 0;
-    private m_y:number = 0;
-    private max_m_x:number = Default_Sizes.EW_grids;
-    private max_m_y:number = Default_Sizes.SN_grids;
+    private m_x:number = 113;
+    private m_y:number = 39;
+    private max_m_x:number = Default_Sizes.EW_grids-1;
+    private max_m_y:number = Default_Sizes.SN_grids-1;
     private min_m_x:number = 0;
     private min_m_y:number = 0;
     private grids_index:Array<Array<HexagonGrid>>;  //箭头实际的工作就是指示格子变色，必须要有一个格子索引

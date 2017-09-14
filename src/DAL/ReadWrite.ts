@@ -59,3 +59,35 @@ function Read_terrain_map(){
     }
     return result;
 }
+function Read_building(){
+    /**
+     * 读取建筑信息
+     * 目前的设定就是度一个格式正确的json文件
+     * 之所以没有直接从一个同样形式的同时文件获取变量就是想尝试RES读取json的效果
+     * 文件存储的是这种形式的{"city":[{"name":,...}...],"town"[...],...}
+     * 在这里要为每一个建筑元素添加signal属性
+     * 返回的是一个列表
+     */
+    let building = RES.getRes("Building_json");
+    if (!building){
+        return 0;
+    }
+    let result:Array<Object> = new Array();
+    for (let t_city of building["city"]){
+        t_city["signal"] = "5";
+        result.push(t_city);
+    };
+    for (let t_town of building["town"]){
+        t_town["signal"] = "8";
+        result.push(t_town);
+    };
+    for (let t_gate of building["gate"]){
+        t_gate["signal"] = "7";
+        result.push(t_gate);
+    };
+    for (let t_harbor of building["harbor"]){
+        t_harbor["signal"] = "b";
+        result.push(t_harbor);
+    };
+    return result;
+}
