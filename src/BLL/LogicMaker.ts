@@ -3,13 +3,11 @@
  */
 class LogicMaker{
     public terrain_map:Array<Array<number>>;   //地形级map，二维数组，基本元素为数字
-    public building;    //建筑信息列表
     private SIZE = Default_Sizes;
     constructor(){
         this.init_terrain_map();
         now_terrain_map = this.terrain_map;
         this.init_building();
-        now_building = this.building;
     }
     public hear(sth:string){
         /**
@@ -48,9 +46,12 @@ class LogicMaker{
         /**
          * 初始化building
          */
-        this.building = this.read_building();
-        if (!this.building){
+        let t_buildings = this.read_building();
+        if (!t_buildings){
             console.log("逻辑层初始建筑 读取建筑信息无果");
+            return 0;
+        }else{
+            now_building = t_buildings;
         }
     }
     private reset_terrain_map(EW:number = this.SIZE.EW_grids,SN:number = this.SIZE.SN_grids){

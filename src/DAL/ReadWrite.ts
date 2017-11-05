@@ -70,24 +70,11 @@ function Read_building(){
      */
     let building = RES.getRes("Building_json");
     if (!building){
-        return 0;
+        return null;
     }
     let result:Array<Object> = new Array();
-    for (let t_city of building["city"]){
-        t_city["signal"] = "5";
-        result.push(t_city);
-    };
-    for (let t_town of building["town"]){
-        t_town["signal"] = "8";
-        result.push(t_town);
-    };
-    for (let t_gate of building["gate"]){
-        t_gate["signal"] = "7";
-        result.push(t_gate);
-    };
-    for (let t_harbor of building["harbor"]){
-        t_harbor["signal"] = "b";
-        result.push(t_harbor);
+    for (let t_city of building["all"]){
+            result.push(t_city);
     };
     return result;
 }

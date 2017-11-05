@@ -24,6 +24,7 @@ var BuildingSymbols:Array<Object> = [
 ];
 //var signalTOnum = {"0":0,"1":1,"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8,"9":9,"a":10,"b":11};
 var signalTOnum_T:Object = {"0":0,"1":1,"2":2,"3":3,"4":4,"9":5,"a":6};
-var signalTOnum_S = {"5":0,"6":1,"7":2,"8":3,"b":4};
+var signalTOnum_B = {"5":0,"6":1,"7":2,"8":3,"b":4};
+var typeTosign_B = {"city":"5","gate":"7","harbor":"b"};//类别名称和单字符代表标识的对照
 var now_terrain_map = new Array();
-var now_building = new Array();
+var now_building; //所有建筑的列表

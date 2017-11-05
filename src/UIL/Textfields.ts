@@ -19,11 +19,18 @@ class StatusBar extends eui.Label{
         this.set_text();
     }
     public set_text(){
+        let t1:string,t2:string;
         if (Mode == "view"){
-            this.text = "查看模式";
+            t1 = "查看模式";
         }else{  //edit
-            this.text = "编辑模式";
+            t1 = "编辑模式";
+        };
+        if (building_show){
+            t2 = "建筑显";
+        }else{
+            t2 = "建筑隐";
         }
+        this.text = t1+";"+t2;
     }
 }
 

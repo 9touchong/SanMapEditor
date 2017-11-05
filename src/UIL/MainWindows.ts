@@ -2,7 +2,7 @@
  * 主界面
  * 可以看作UI层的主程序
  */
-var Mode:string = "edit";   //两种模式 编辑edit查看view，编辑室编辑地形查看是查看地形和建筑，建筑不再UI界面编辑 直接手动改文本文件
+var Mode:string = "view";   //两种模式 编辑edit查看view，编辑室编辑地形查看是查看地形和建筑，建筑不再UI界面编辑 直接手动改文本文件
 class MainWindows extends eui.Group{
     private MapContainer:MapContainer;
     private LOGIC:LogicMaker;   //逻辑控制程序
@@ -63,10 +63,11 @@ class MainWindows extends eui.Group{
                 this.MapContainer.showORhide("T");
                 break;
             case "read_Building":
-                console.log("读取建筑信息功能正在开发");
+                this.MapContainer.update_building();
                 break;
             case "showORhide_B":
                 this.MapContainer.showORhide("B");
+                this.status_bar.set_text();
                 break;
             case "switch_mode":
                 this.switch_mode();

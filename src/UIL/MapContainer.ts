@@ -2,6 +2,7 @@
  * 操作地图图片，编辑网格的区域。也是主工作区
  * 一个可滚动的容器
  */
+var building_show:boolean = true;
 class MapContainer extends eui.Scroller{
     private SIZE:Object = Default_Sizes;    //规格,与逻辑层的同名属性来自相同引用
     private content:eui.Group;
@@ -70,6 +71,7 @@ class MapContainer extends eui.Scroller{
             this.grids_layer.visible = (this.grids_layer.visible)?false:true;
         }else{  //"B"建筑现隐
             this.building_show = (this.building_show)?false:true;
+            building_show = this.building_show;
             if (this.building_show){
                 for (let t_building of now_building){
                     this.grids_index[t_building["Lpos"]["x"]][t_building["Lpos"]["y"]].set_building();
@@ -80,5 +82,24 @@ class MapContainer extends eui.Scroller{
                 };
             }
         }
+    }
+    public update_building(){
+        /**
+         * 目前因为无法找到合适的方法实时的读取文件资源，这里也只能异步，那再在数据层实现在这调用就有些麻烦了,就在这读文件了
+         */
+        for (let t_building of now_building){
+            this.grids_index[t_building["Lpos"]["x"]][t_building["Lpos"]["y"]].del_building();
+        };
+        RES.destroyRes("resource/for_map/Building.json");
+        RES.getResByUrl("resource/for_map/Building.json",function(buildings:any){
+            if (!buildings){
+                return null;
+            }
+            now_building = buildings["all"];
+            for (let t_building of now_building){
+                this.grids_index[t_building["Lpos"]["x"]][t_building["Lpos"]["y"]].set_building(t_building);
+            };
+        },this,RES.ResourceItem.TYPE_JSON);
+        
     }
 }

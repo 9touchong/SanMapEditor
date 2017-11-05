@@ -10,7 +10,7 @@ class HexagonGrid extends egret.Bitmap{
     private px_y:number;
     private px_r:number;
     public terrain:number; //表示地形类别的数字，数字是TerrainSymbols中的序号
-    public building:Array<Object>; //表示建筑信息的,可以为空。
+    public building; //表示建筑信息的,可以为空。
     private de_alph:number = 0.4; //默认的alpha值
     private coords_bar:CoordsBar; //坐标显示栏
     private building_bar:BuildingBar;   //建筑信息栏
@@ -57,7 +57,7 @@ class HexagonGrid extends egret.Bitmap{
         now_terrain_map[this.m_x][this.m_y] = this.terrain;
         last_HexagonGrid = this;
     }
-    public set_building(building?:Array<Object>){
+    public set_building(building?){
         /**
          * 设置building属性并开启building显示
          */
@@ -69,9 +69,13 @@ class HexagonGrid extends egret.Bitmap{
             return 0;
         }
         //改变外观
-        this.texture = RES.getRes(BuildingSymbols[signalTOnum_S[this.building["signal"]]]["res_name"]);
+        this.texture = RES.getRes(BuildingSymbols[signalTOnum_B[typeTosign_B[this.building["type"]]]]["res_name"]);
     }
     public hide_building(){
         this.texture = RES.getRes(TerrainSymbols[this.terrain]["res_name"]);
+    }
+    public del_building(){
+        this.hide_building();
+        this.building = null;
     }
 }
